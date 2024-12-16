@@ -1,0 +1,137 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>引入字体图标</title>
+  <link rel="stylesheet" href="../../css/styles.css">
+  <!-- 引入公共样式 -->
+  <link rel="stylesheet" href="../../css/common.css">
+  <!-- 引入初始化样式 -->
+  <link rel="stylesheet" href="../../css/Initialize.css">
+  <link rel="stylesheet" href="../../css/评论.css">
+  <link rel="icon" href="./dragon.ico">
+  <style>
+    /* 内容区域 */
+    .content {
+      background-color: rgba(255, 255, 255, 0.4);
+      padding: 20px;
+    }
+  </style>
+</head>
+
+<body>
+  <!-- 头部导航 -->
+  <header>
+    <div class="container">
+      <ul>
+        <li class="dropdown1">
+          <a href="./html/index.html" class="dropbtn1">首页</a>
+        </li>
+        <li class="dropdown2">
+          <a href="#" class="dropbtn2">待开发</a>
+          <div class="dropdown-content2">
+            <a href="#">Link 1</a>
+            <a href="#">Link 2</a>
+            <a href="#">Link 3</a>
+          </div>
+        </li>
+        <li class="dropdown3">
+          <a href="#" class="dropbtn3">待开发</a>
+          <div class="dropdown-content3">
+            <a href="#">Link 1</a>
+            <a href="#">Link 2</a>
+            <a href="#">Link 3</a>
+          </div>
+        </li>
+        <li class="dropdown4">
+          <a href="#" class="dropbtn4">社交</a>
+          <div class="dropdown-content4">
+            <a href="./html/网站收藏.html">网页资源</a>
+            <a href="#">Link 2</a>
+            <a href="#">Link 3</a>
+          </div>
+        </li>
+      </ul>
+    </div>
+  </header>
+  <!-- 内容区域 -->
+  <div class="content">
+    <h3>我们在前端开发中,会发现其他网站中,有很多小图标,第一反应是使用精灵图和设置背景图片,但是精灵图和背景图有一个缺点,修改麻烦,所以我们引入了一个
+      新的方法-字体图标
+    </h3>
+    <h4>资源网站地址</h4>
+    <p style="color: gold;">
+      <a href="https://www.iconfont.cn/">国内:https://www.iconfont.cn/</a><br>
+      <a href="https://icomoon.io/"> 国外:https://icomoon.io/</a>
+    </p>
+    <span>使用方法</span>
+    <p>在我们下载好字体图标后,会有压缩包,将压缩包解压到目标地址,将里面的名为font的文件夹放到工程目录里面</p>
+    <p>引用下面的代码放到css代码中</p>
+    <p style="background-color: rgba(0, 0,0, 0.7);color: wheat;padding: 20px;">
+      @font-face { <br>
+      font-family: 'icomoon';<br>
+      src: url('fonts/icomoon.eot?i9lvad');<br>
+      src: url('fonts/icomoon.eot?i9lvad#iefix') format('embedded-opentype'),<br>
+      url('fonts/icomoon.ttf?i9lvad') format('truetype'),<br>
+      url('fonts/icomoon.woff?i9lvad') format('woff'),<br>
+      url('fonts/icomoon.svg?i9lvad#icomoon') format('svg');<br>
+      font-weight: normal;<br>
+      font-style: normal;<br>
+      font-display: block;<br>
+      }</p>
+    <p>接着给点击压缩包中的demo.html跳转到下载的图标界面,在对应的图标中复制右边的方框,放入对应的标签内容中</p>
+    <p>接着引用属性:font-family: 'icomoon';即可</p>
+  </div>
+  <!-- 底部上下一篇 -->
+  <div class="footer">
+    <div class="bottom_nav w">
+      <a href="./html/文章.html" class="prev_page">
+        <img src="./img/background3.jpg" alt="">
+        <div class="label">上一篇</div>
+        <div class="info">php数组的常用方法</div>
+        <div class="block"></div>
+      </a>
+      <a href="./html/文章.html" class="next_page">
+        <img src="./img/background7.jpg" alt="">
+        <div class="label">下一篇</div>
+        <div class="info">php数组的进阶技巧</div>
+        <div class="block"></div>
+      </a>
+    </div>
+  </div>
+
+  <!-- 底部评论功能列表 -->
+  <footer style="margin-top: 30px;">
+    <div class="container1">
+      <h1>评论区</h1>
+      <div class="comment-form">
+        <!-- 选择头像区域 -->
+        <input type="file" id="avatarInput" accept="image/*">
+        <img id="avatarPreview" src="https://via.placeholder.com/70" alt="User Avatar" style="display: none;">
+        <input type="text" id="userName" placeholder="你的名字">
+        <select id="systemSelect">
+          <option value="Windows 10">Windows 10</option>
+          <option value="macOS">macOS</option>
+          <option value="Linux">Linux</option>
+        </select>
+        <select id="regionSelect">
+          <option value="China">中国</option>
+          <option value="United States">外国</option>
+          <option value="Europe">太空</option>
+        </select>
+        <textarea id="commentInput" placeholder="良言一句三冬暖,恶语伤人六月寒...~"></textarea>
+        <button id="submitButton">提交</button>
+      </div>
+      <div class="comments-section">
+        <h2>评论列表</h2>
+        <ul id="commentsList"></ul>
+      </div>
+    </div>
+  </footer>
+  <script src="./js/评论功能.js"></script>
+  <script src="./js/背景切换.js"></script>
+</body>
+
+</html>

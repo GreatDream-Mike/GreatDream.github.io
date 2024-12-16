@@ -1,0 +1,556 @@
+.container {
+  position: relative;
+  width: 80%;
+  margin: 0 auto;
+  /* overflow: hidden; */
+}
+
+/* 版心样式 */
+.w {
+  width: 1380px;
+}
+
+p {
+  text-indent: 2em;
+}
+
+/* 字体图标样式 */
+@font-face {
+  font-family: 'icomoon';
+  src: url('../html/fonts/icomoon.eot?i9lvad');
+  src: url('../html/fonts/icomoon.eot?i9lvad#iefix') format('embedded-opentype'),
+    url('../html/fonts/icomoon.ttf?i9lvad') format('truetype'),
+    url('../html/fonts/icomoon.woff?i9lvad') format('woff'),
+    url('../html/fonts/icomoon.svg?i9lvad#icomoon') format('svg');
+  font-weight: normal;
+  font-style: normal;
+  font-display: block;
+}
+
+body {
+  font-family: Arial, sans-serif;
+  line-height: 1.6;
+  /* fixed表示背景图片相对于视口固定 */
+  background: url(/img/background9.jpg)no-repeat center center fixed;
+  background-size: cover;
+  margin: 0;
+  font-family: Arial, sans-serif;
+  /* 防止水平滚动条 */
+  overflow-x: hidden;
+}
+
+/* 头部导航区域 */
+header {
+  position: sticky;
+  top: 0;
+  z-index: 1000;
+  background: rgba(0, 0, 0, 0.5);
+  color: #fff;
+  width: 100%;
+  height: 70px;
+  line-height: 70px;
+  text-align: center;
+  font-family: 'icomoon';
+}
+
+/* 功能按钮 */
+header .user_function {
+  color: wheat;
+  position: absolute;
+  right: 0;
+  top: 0;
+
+  font-size: 20px;
+  cursor: pointer;
+}
+
+/* 首页伪元素小图标样式 */
+/* li:first-child a::before {
+  content: '';
+  color: orchid;
+  font-size: 17px;
+  transition: all 0.5s;
+} */
+
+li:first-child:hover a::before {
+  font-size: 19px;
+}
+
+header a {
+  color: wheat;
+  text-decoration: none;
+  text-transform: uppercase;
+  font-size: 16px;
+  padding: 16px;
+}
+
+/* 顶部左侧样式 */
+header .home {
+  position: absolute;
+  width: 80px;
+  left: 50px;
+  top: 0;
+  transition: all 0.5s;
+}
+
+header .home a {
+  font-family: '楷体';
+  font-size: 20px;
+}
+
+header ul {
+  padding: 0;
+  list-style: none;
+}
+
+header li {
+  padding: 0 20px 0 20px;
+}
+
+/* 二级菜单的样式*/
+div[class^='dropdown-content'] {
+  display: none;
+  position: absolute;
+  border-radius: 15px;
+  border: 2px solid skyblue;
+  background-color: #f9f9f9;
+  width: 270px;
+  background-color: wheat;
+  margin: 0 -100px;
+  /* 设置阴影效果 */
+  box-shadow: 0px 8px 16px 0px rgba(0, 0, 0, 0.2);
+  z-index: 100;
+  text-align: center;
+}
+
+
+/* 设置二级菜单内a标签的样式 */
+div[class^='dropdown-content'] a {
+  color: black;
+  padding: 0 10px;
+  text-decoration: none;
+  /* 转换为行内块元素 */
+  display: inline-block;
+  /* display: block; */
+}
+
+/* 鼠标经过后，div内的a标签的变化 */
+div[class^='dropdown-content'] a:hover {
+  background-color: skyblue;
+}
+
+/* 鼠标经过盒子的时候，让它可以显示 */
+li[class^='dropdown']:hover div[class^='dropdown-content'] {
+  display: block;
+}
+
+li[class^='dropdown']:hover {
+  border-bottom: 3px solid skyblue;
+}
+
+/* 给导航标签添加字体图标 */
+header a[class^='dropbtn']::after {
+  content: '\ea50';
+  font-size: 20px;
+  position: absolute;
+  font-size: 25px;
+  /* 旋转90度 */
+  transform: rotate(90deg);
+  transition: all 0.5s;
+}
+
+/* 给导航标签的字体图标添加旋转效果 */
+header a[class^='dropbtn']:hover::after {
+  transform: rotate(180deg);
+}
+
+/* 主页底部样式 */
+footer {
+  background: rgba(0, 0, 0, 0.5);
+  color: orange;
+  text-align: center;
+  padding: 20px 0;
+}
+
+
+.footer {
+  background-color: rgba(255, 255, 255, 0.4);
+  color: #fff;
+  text-align: center;
+  padding: 20px 110px;
+}
+
+.close-btn {
+  position: absolute;
+  top: 10px;
+  right: 10px;
+  font-size: 24px;
+  cursor: pointer;
+}
+
+/* 小熊奔跑动画 */
+@keyframes bear {
+  0% {
+    background-position: 0 0;
+  }
+
+  100% {
+    background-position: -1184px 0;
+  }
+}
+
+/* 小熊从左边到中间的移动 */
+@keyframes move {
+  0% {
+    left: 0;
+  }
+
+  100% {
+    left: 50%;
+    /* 小熊超过了宽度的一半 */
+    transform: translateX(-50%);
+  }
+}
+
+/* 雪山的动画 */
+@keyframes mountain {
+
+  0% {
+    background-position: 0 0;
+  }
+
+  100% {
+    background-position: -1600px 0;
+  }
+}
+
+.bear_mountain {
+  width: 1600px;
+  height: 100px;
+  background: url(/img/雪山背景.png)repeat-x;
+  animation: mountain 10s linear forwards infinite;
+}
+
+.bear_mountain .bear {
+  position: absolute;
+  width: 148px;
+  height: 74px;
+  background: url(/img/奔跑的小熊1.png) no-repeat;
+  animation: bear .5s steps(8) infinite, move 5s forwards
+}
+
+/* 左右文章内容的跳转 */
+.bottom_nav {
+  /* width: 1200px; */
+  height: 200px;
+}
+
+
+div a[class$='_page'] {
+  position: relative;
+  display: block;
+  overflow: hidden;
+  float: left;
+  text-align: center;
+  width: 600px;
+  height: 200px;
+}
+
+div a[class$='_page'] img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  transition: all 0.3s;
+}
+
+div a[class$='_page']:hover img {
+  transform: scale(1.1);
+}
+
+
+div a[class$='_page'] .label,
+.info {
+  position: absolute;
+  display: block;
+  line-height: 50px;
+  width: 100%;
+  height: 50px;
+  top: 50px;
+}
+
+div a[class$='_page'] .label {
+  margin-top: 50px;
+}
+
+.block {
+  position: absolute;
+  top: 0;
+  background-color: rgba(0, 0, 0, 0.5);
+  width: 600px;
+  height: 250px;
+  opacity: 1;
+}
+
+.block:hover {
+  /* 设置透明度 */
+  opacity: 0;
+}
+
+
+
+/* 右侧边栏样式 */
+.main .user {
+  margin-top: 50px;
+  float: right;
+  width: 360px;
+  height: 400px;
+  /* margin-: 40px; */
+}
+
+/* 个人头像样式1 */
+.box1 {
+  font-family: 'icomoon';
+  height: 300px;
+  /* background-color: black; */
+  background: url(/img/图片2.jpg) no-repeat center center;
+  background-size: cover;
+  text-align: center;
+}
+
+.box1 h3 {
+  margin: 20px 0;
+  font-weight: 400;
+  font-size: 18px;
+  color: wheat;
+}
+
+/* 社交图标的样式 */
+.box1 a {
+  padding: 0 10px;
+}
+
+/* 个人头像样式 */
+.user #img1 {
+  width: 100px;
+  height: 100px;
+  margin-top: 10px;
+  border-radius: 50%;
+  transition: all 0.5s;
+}
+
+.user img:hover {
+  transform: rotate(360deg);
+}
+
+
+
+.box2 {
+  font-family: 'icomoon';
+  margin-top: 50px;
+  width: 361px;
+  height: 400px;
+  background-color: #2e3440;
+  padding: 0 27px;
+  transition: all 2s;
+}
+
+.box2 h3::before {
+  content: '';
+  padding-right: 10px;
+}
+
+.box2 p {
+  font-family: "STKaiti";
+  color: wheat;
+  font-size: 20px;
+}
+
+/* 用户区域时间 */
+.box2 .date1 {
+  text-align: center;
+  height: 60px;
+  line-height: 60px;
+  color: white;
+  background-color: black;
+  font-family: '楷体';
+}
+
+.nav_banner {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 70px;
+  transform: translateY(-70px);
+  transition: all 0.5s;
+  background-color: skyblue;
+}
+
+/* 更换背景 */
+.popBox {
+  width: 750px;
+  height: 450px;
+  display: none;
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1);
+  z-index: 1000;
+  resize: both;
+  overflow: auto;
+}
+
+.popNav {
+  height: 50px;
+  background-color: palegoldenrod;
+  line-height: 50px;
+  position: relative;
+  padding: 0 10px;
+  cursor: move;
+}
+
+.popNav ul {
+  position: absolute;
+  top: 0;
+  right: 0;
+}
+
+.popNav ul a {
+  margin: 0 10px;
+  color: black;
+}
+
+.popContent {
+  height: calc(100% - 50px);
+  /* 纵向滚动条 */
+  overflow-y: auto;
+}
+
+.backgroundPop .title {
+  height: 50px;
+  line-height: 50px;
+  background-color: saddlebrown;
+  padding: 0 20px;
+  position: relative;
+}
+
+.backgroundPop .title a {
+  position: absolute;
+  top: 0;
+  right: 20px;
+  color: white;
+}
+
+.backgroundPop ul li {
+  display: inline-block;
+  width: 180px;
+  height: 150px;
+  background-color: #f0f0f0;
+  margin: 0 20px 20px 30px;
+  cursor: pointer;
+  text-align: center;
+}
+
+.content1 {
+  border: 1px solid skyblue;
+}
+
+.backgroundPop ul li img {
+  width: 100%;
+  height: 100%;
+  border-radius: 15px;
+  object-fit: cover;
+}
+
+.selected {
+  border: 2px solid red;
+}
+
+/* 电梯样式 */
+.elevator {
+  position: fixed;
+  right: 20px;
+  bottom: 20px;
+  display: flex;
+  flex-direction: column;
+  align-items: flex-end;
+  background-color: transparent;
+  padding: 0;
+  border-radius: 10px;
+  box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+}
+
+.elevator li {
+  width: 70px;
+  height: 70px;
+  line-height: 70px;
+  list-style: none;
+  text-align: center;
+  background-color: skyblue;
+  color: white;
+  cursor: pointer;
+  margin-top: 10px;
+  border-radius: 5px;
+  transition: background-color 0.3s ease;
+}
+
+.elevator li:hover {
+  background-color: steelblue;
+}
+
+
+/* 随机文章区域样式 */
+.randomBox {
+  width: 361px;
+  background-color: whitesmoke;
+  border: 1px solid gray;
+  margin-top: 35px;
+  border-radius: 20px;
+}
+
+.randomBox .title {
+  height: 50px;
+  line-height: 50px;
+  text-align: center;
+  font-family: '楷体';
+  font-size: 20px;
+}
+
+.randomBox .article {
+  height: 100px;
+  margin: 20px
+}
+
+.randomBox .article a {
+  display: inline-block;
+  width: 40%;
+  height: 100%;
+}
+
+.randomBox .article a img {
+  width: 100%;
+  height: 100%;
+  border-radius: 10px;
+  object-fit: cover;
+}
+
+.randomBox .article .message {
+  width: 60%;
+  height: 100%;
+  float: right;
+  clear: both;
+}
+
+.randomBox .article .message a {
+  width: 100%;
+  height: 20px;
+  margin: 10px 0;
+  text-align: center;
+}
+
+.randomBox .article .message .time {
+  width: 100%;
+  height: 20px;
+  margin: 20px 15px;
+}
