@@ -34,14 +34,14 @@ const dotsArray = Array.from(dots);
 
 const arr = [
   {
-    url: '/img/background3.jpg', title: 'html中引入字体图片的方法(全流程)',
+    url: '../../img/background3.jpg', title: 'html中引入字体图片的方法(全流程)',
     Text: '我们在前端开发中,会发现其他网站中,有很多小图标,第一反应是使用精灵图,但是精灵图有一个缺点,修改麻烦,所以我介绍一个新的方法-字体图标',
-    link: "/html/引入字体图标的方法.html"
+    link: "./html/引入字体图标的方法.html"
   },
-  { url: '/img/background5.jpg', title: '网站建设日志', Text: '关于此网站建设的记录', link: "/html/网站建设实况.html" },
-  { url: '/img/background7.jpg', title: 'php正则表达式', Text: '关于正则表达式的一些常用概念及练习', link: '/html/正则表达式.html' },
-  { url: '/img/background9.jpg', title: '轮播图4', Text: '内容4', link: '/html/index.html' },
-  { url: '/img/background10.jpg', title: '轮播图5', Text: '内容5', link: '/html/index.html' },
+  { url: '../../img/background5.jpg', title: '网站建设日志', Text: '关于此网站建设的记录', link: "./html/网站建设实况.html" },
+  { url: '../../img/background7.jpg', title: 'php正则表达式', Text: '关于正则表达式的一些常用概念及练习', link: './html/正则表达式.html' },
+  { url: '../../img/background9.jpg', title: '轮播图4', Text: '内容4', link: './html/index.html' },
+  { url: '../../img/background10.jpg', title: '轮播图5', Text: '内容5', link: './html/index.html' },
 ];
 
 // 公用属性
