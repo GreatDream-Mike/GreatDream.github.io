@@ -1,0 +1,275 @@
+/* 
+   fixed会浮空,下面的标准流会挤掉之前的位置
+   sticky也会浮空,但不会丢失位置
+*/
+/* 字体动画效果 */
+@keyframes font {
+  0% {
+    width: 0;
+  }
+
+  100% {
+    width: 560px;
+  }
+}
+
+/* 打印机效果区域 */
+.hero {
+  /* background: url(/img/background10.jpg)no-repeat center center; */
+  color: wheat;
+  background-color: rgba(0, 0, 0, 0.5);
+  text-align: center;
+  background-size: cover;
+  padding: 340px 0;
+}
+
+.container .print {
+  overflow: hidden;
+  width: 560px;
+  background-color: transparent;
+  color: rgb(244, 224, 7);
+  margin: 0 auto;
+  /* 强制一行显示 */
+  white-space: nowrap;
+  /* steps(完成动画需要的步数),有了steps就不要写ease或者linear */
+  animation: font 6s steps(31) infinite alternate;
+}
+
+
+.web_address a {
+  /* 声明字体图标-搜索 */
+  font-family: 'icomoon';
+  font-size: 25px;
+  padding: 5px 20px;
+  cursor: pointer;
+  transition: all 0.6s;
+}
+
+/* 鼠标经过字体图标时的效果
+1.web_address a:hover  :鼠标经过后才会有效果
+2.web_address:hover a:鼠标经过后,所有的a标签都会有效果
+*/
+.web_address a:hover {
+  font-size: 30px;
+}
+
+
+/* 下拉按钮 */
+.bottom_button {
+  width: 100%;
+  height: 30px;
+  text-align: center;
+
+}
+
+@keyframes run {
+  0% {}
+
+  50% {
+    transform: translateY(40px)
+  }
+
+  100% {
+    transform: translateY(60px);
+  }
+}
+
+.bottom_button a {
+  /* 声明字体图标-下拉按钮 */
+  font-family: 'icomoon';
+  font-size: 30px;
+  color: wheat;
+  display: inline-block;
+  transition: all .1s;
+  animation: run 5s linear infinite forwards alternate;
+}
+
+.posts {
+  padding: 20px;
+  /* 缓解首页资源加载的卡顿问题 */
+  opacity: 0;
+}
+
+.contact {
+  padding: 20px;
+}
+
+.posts article {
+  background: #f4f4f4;
+  margin-bottom: 20px;
+  padding: 15px;
+  border-radius: 5px;
+}
+
+.posts article:hover {
+  background: skyblue;
+  /* 添加鼠标过渡效果 */
+  transition: all 0.8s;
+}
+
+.posts .read-more {
+  display: inline-block;
+  margin-top: 10px;
+  color: #77B1E5;
+  text-decoration: none;
+}
+
+/* 清除footer上方的浮动效果 */
+.contact {
+  clear: both;
+}
+
+.contact form {
+  margin-top: 20px;
+}
+
+.contact label {
+  display: block;
+  margin-top: 10px;
+}
+
+.contact input,
+.contact textarea {
+  width: 100%;
+  padding: 10px;
+  margin-top: 5px;
+  border-radius: 5px;
+  border: 1px solid #ccc;
+}
+
+.contact button {
+  padding: 10px 20px;
+  background: #77B1E5;
+  color: #fff;
+  border: none;
+  border-radius: 5px;
+  cursor: pointer;
+}
+
+/* 弹框样式 */
+.popup {
+  position: fixed;
+  top: 0;
+  left: 50%;
+  transform: translateX(-50%);
+  width: 100%;
+  /* padding: 20px; */
+  background-color: rgba(8, 135, 214, 1);
+  color: #fff;
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.3);
+  border-radius: 8px;
+  opacity: 0;
+  visibility: hidden;
+  transition: opacity 0.5s ease-in-out, transform 0.5s ease-in-out;
+  z-index: 1000;
+  /* 确保弹框在最上层 */
+}
+
+.popup.show {
+  opacity: 1;
+  visibility: visible;
+  transition: opacity 0.5s ease-in-out, transform 0.5s ease-in-out;
+  /* 从顶部弹出 */
+}
+
+.popup-content {
+  text-align: center;
+}
+
+.close-btn {
+  position: absolute;
+  top: 10px;
+  right: 10px;
+  font-size: 24px;
+  cursor: pointer;
+}
+
+/* tab栏切换 */
+.tab-container {
+  width: 100%;
+  max-width: 1000px;
+  margin: 0 auto;
+  padding: 20px;
+  box-sizing: border-box;
+  background-color: skyblue;
+}
+
+.tab-scroll {
+  display: flex;
+  overflow-x: auto;
+  white-space: nowrap;
+  border-bottom: 2px solid #ccc;
+  margin-bottom: 20px;
+}
+
+.tab-item {
+  padding: 10px 20px;
+  cursor: pointer;
+  border-bottom: 2px solid transparent;
+  transition: border-color 0.3s ease;
+}
+
+.tab-item.active {
+  border-bottom-color: #007bff;
+  color: #007bff;
+}
+
+.tab-content-container {
+  position: relative;
+}
+
+.tab-content {
+  display: none;
+  padding: 20px;
+  border: 1px solid #ccc;
+  border-radius: 4px;
+  background-color: #f9f9f9;
+}
+
+.tab-content.active {
+  display: block;
+}
+
+/* 中心区域设置高度,防止浮动 */
+
+.main_content {
+  height: 1500px;
+}
+
+
+/* 主页底部导航 */
+.footerNav {
+  margin-bottom: 50px;
+}
+
+.severGroup {
+  display: inline-block;
+  width: 25%;
+  height: 100%;
+  /* 消除中间的缝隙效果 */
+  margin-left: -4px;
+  text-align: center;
+}
+
+.severGroup .title {
+  height: 30px;
+  color: wheat;
+  font-weight: 700;
+  font-size: 18px;
+}
+
+.severGroup ul li {
+  width: 80px;
+  height: 70px;
+  list-style: none;
+  margin: 0 auto;
+  line-height: 70px;
+  /* 阻止全局小li的影响 */
+  display: block;
+}
+
+.severGroup ul li a {
+  color: white;
+  font-family: '楷体';
+  font-size: 18px;
+}

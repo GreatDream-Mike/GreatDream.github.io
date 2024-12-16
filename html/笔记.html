@@ -1,0 +1,282 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>笔记存放页</title>
+  <link rel="icon" href="/dragon.ico">
+  <style>
+    body {
+      font-family: Arial, sans-serif;
+      margin: 0;
+      padding: 0;
+      background-color: #f4f4f4;
+      color: #333;
+    }
+
+    .container {
+      width: 80%;
+      max-width: 1200px;
+      margin: 0 auto;
+      padding: 20px;
+      background-color: #fff;
+      box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+    }
+
+    header {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      margin-bottom: 20px;
+      border-bottom: 1px solid #ddd;
+      padding-bottom: 10px;
+    }
+
+    header h1 {
+      margin: 0;
+      font-size: 24px;
+    }
+
+    #search {
+      padding: 5px;
+      font-size: 16px;
+      border: 1px solid #ddd;
+      border-radius: 4px;
+    }
+
+    .note-list {
+      display: flex;
+      flex-direction: column;
+      gap: 20px;
+    }
+
+    .note {
+      background-color: #fafafa;
+      padding: 20px;
+      border: 1px solid #ddd;
+      border-radius: 4px;
+      box-shadow: 0 0 5px rgba(0, 0, 0, 0.1);
+    }
+
+    .note h2 {
+      margin-top: 0;
+      font-size: 20px;
+    }
+
+    .note p {
+      margin: 10px 0;
+    }
+
+    .note small {
+      font-size: 12px;
+      color: #666;
+    }
+
+    .add-note {
+      margin-top: 40px;
+      background-color: #fafafa;
+      padding: 20px;
+      border: 1px solid #ddd;
+      border-radius: 4px;
+      box-shadow: 0 0 5px rgba(0, 0, 0, 0.1);
+    }
+
+    .add-note h2 {
+      margin-top: 0;
+      font-size: 20px;
+    }
+
+    .add-note label {
+      display: block;
+      margin-bottom: 5px;
+      font-weight: bold;
+    }
+
+    .add-note input,
+    .add-note textarea {
+      width: 100%;
+      padding: 10px;
+      margin-bottom: 10px;
+      border: 1px solid #ddd;
+      border-radius: 4px;
+    }
+
+    .add-note button {
+      padding: 10px 20px;
+      background-color: #007bff;
+      color: #fff;
+      border: none;
+      border-radius: 4px;
+      cursor: pointer;
+    }
+
+    .add-note button:hover {
+      background-color: #0056b3;
+    }
+  </style>
+</head>
+
+<body>
+  <div class="container">
+    <header>
+      <h1>我的笔记</h1>
+      <input type="text" id="search" placeholder="搜索笔记...">
+    </header>
+    <main>
+      <section class="note-list">
+      </section>
+      <section class="add-note">
+        <h2>添加新笔记</h2>
+        <form id="addNoteForm">
+          <label for="title">标题:</label>
+          <input type="text" id="title" required>
+          <label for="content">内容:</label>
+          <textarea id="content" rows="4" required></textarea>
+          <button type="submit">保存笔记</button>
+        </form>
+      </section>
+    </main>
+  </div>
+
+  <script>
+    document.addEventListener('DOMContentLoaded', function () {
+      // 获取所需的元素
+      const addNoteForm = document.getElementById('addNoteForm');
+      const searchInput = document.getElementById('search');
+      const noteList = document.querySelector('.note-list');
+      let allNotes = []; // 用于存储所有笔记的数组
+
+      // 从localStorage加载保存的笔记
+      function loadNotes() {
+        const savedNotes = JSON.parse(localStorage.getItem('notes')) || [];
+        allNotes = savedNotes.map(note => ({
+          element: createNoteElement(note),
+          data: note
+        }));
+        renderNotes();
+      }
+
+      // 创建笔记元素的函数
+      function createNoteElement(note) {
+        const element = document.createElement('article');
+        element.className = 'note';
+        element.innerHTML = `
+      <h2>${note.title}</h2>
+      <p>${note.content}</p>
+      <small>创建日期: ${note.date}</small>
+      <span data-link="${note.link}" style="display:none;"></span>
+      <button class="delete-note">删除</button>
+    `;
+        return element;
+      }
+
+      // 渲染所有笔记到DOM中
+      function renderNotes() {
+        noteList.innerHTML = ''; // 清空列表
+        allNotes.forEach(noteObj => {
+          noteList.appendChild(noteObj.element);
+          addDeleteListener(noteObj);
+        });
+      }
+
+      // 为笔记添加删除按钮的事件监听器
+      function addDeleteListener(noteObj) {
+        noteObj.element.querySelector('.delete-note').addEventListener('click', function () {
+          deleteNote(noteObj);
+        });
+      }
+
+      loadNotes();
+
+      // 监听表单提交事件
+      addNoteForm.addEventListener('submit', function (event) {
+        event.preventDefault();
+
+        const title = document.getElementById('title').value;
+        const content = document.getElementById('content').value;
+        const link = prompt("请输入笔记的链接:"); // 新增链接输入
+
+        if (title && content && link) {
+          const newNote = {
+            title: title,
+            content: content,
+            date: new Date().toISOString().split('T')[0],
+            link: link // 新增链接属性
+          };
+          const newNoteObj = {
+            element: createNoteElement(newNote),
+            data: newNote
+          };
+          allNotes.push(newNoteObj);
+          addDeleteListener(newNoteObj);
+          renderNotes();
+
+          // 保存笔记到localStorage
+          saveNotes();
+
+          // 清空表单
+          document.getElementById('title').value = '';
+          document.getElementById('content').value = '';
+        }
+      });
+
+      // 定义一个函数来删除笔记
+      function deleteNote(noteObj) {
+        allNotes = allNotes.filter(n => n !== noteObj); // 从数组中移除笔记对象
+        noteObj.element.remove(); // 从DOM中移除笔记元素
+
+        // 保存更新后的笔记到localStorage
+        saveNotes();
+      }
+
+      // 定义一个函数来过滤并显示笔记
+      function filterNotes(query) {
+        const filteredNotes = allNotes.filter(noteObj => {
+          return noteObj.data.title.toLowerCase().includes(query.toLowerCase()) ||
+            noteObj.data.content.toLowerCase().includes(query.toLowerCase());
+        });
+        noteList.innerHTML = ''; // 清空列表
+        filteredNotes.forEach(noteObj => {
+          noteList.appendChild(noteObj.element);
+          addDeleteListener(noteObj); // 重新添加删除监听器（虽然在这里可能不是必需的，但为了确保一致性）
+        });
+      }
+
+      // 创建笔记元素的函数
+      function createNoteElement(note) {
+        const element = document.createElement('article');
+        element.className = 'note';
+        element.innerHTML = `
+    <h2>${note.title}</h2>
+    <p>${note.content}</p>
+    <small>创建日期: ${note.date}</small>
+    <div>
+      <span>链接:</span>
+      <a href="${note.link}" target="_blank" rel="noopener noreferrer">${note.link}</a>
+    </div>
+    <button class="delete-note">删除</button>`;
+        return element;
+      }
+
+      // 监听搜索输入框的输入事件
+      searchInput.addEventListener('input', function () {
+        const query = searchInput.value;
+        filterNotes(query);
+      });
+
+      // 定义保存笔记到localStorage的函数
+      function saveNotes() {
+        const notesArray = allNotes.map(noteObj => ({
+          title: noteObj.data.title,
+          content: noteObj.data.content,
+          date: noteObj.data.date,
+          link: noteObj.data.link // 确保包含新属性
+        }));
+        localStorage.setItem('notes', JSON.stringify(notesArray));
+      }
+    });
+  </script>
+</body>
+
+</html>

@@ -1,0 +1,132 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>文章界面</title>
+  <link rel="stylesheet" href="/css/文章.css">
+  <style>
+    .nav {
+      width: 1200px;
+      background: url(/img/风景图.jpg)no-repeat center 0;
+      margin: 0 auto;
+      text-align: center;
+      line-height: 100px;
+      text-decoration: none;
+    }
+
+    .nav a {
+      text-decoration: none;
+      color: white;
+      font-size: 20px;
+    }
+
+    body {
+      font-family: Arial, sans-serif;
+      margin: 0;
+      padding: 0;
+      background: #f4f4f4;
+    }
+
+    .container {
+      width: 80%;
+      margin: 50px auto;
+      background-color: #fff;
+      padding: 20px;
+      box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+    }
+
+    .header {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      margin-bottom: 20px;
+    }
+
+    .header h1 {
+      margin: 0;
+    }
+
+    .author {
+      font-size: 14px;
+      color: #777;
+      float: right;
+    }
+
+    .content {
+      font-size: 16px;
+      line-height: 1.6;
+      color: #333;
+    }
+
+    .share-button {
+      display: flex;
+      justify-content: center;
+      margin-top: 20px;
+    }
+
+    .share-button button {
+      padding: 10px 20px;
+      font-size: 16px;
+      color: #fff;
+      background-color: #007bff;
+      border: none;
+      border-radius: 5px;
+      cursor: pointer;
+      transition: background-color 0.3s ease;
+    }
+
+    .share-button button:hover {
+      background-color: #0056b3;
+    }
+
+    p {
+      font-size: 20px;
+      font-weight: 700px;
+    }
+
+    .content img {
+      width: 100%;
+    }
+  </style>
+</head>
+
+<body>
+  <div class="nav"><a href="/html/index.html">首页</a></div>
+  <div class="container">
+    <div class="header">
+      <h1>c语言学习(2024/11/5~未知)</h1>
+      <div class="share-button">
+        <button onclick="window.prompt('复制以下内容:', document.location.href)">分享或复制链接</button>
+      </div>
+    </div>
+    <div class="content">
+      <p>这是文章的第一段内容。你可以在这里添加任何你想要的内容，包括段落、图片、列表等。</p>
+      <p>这是文章的第二段内容。请确保你的文章内容清晰、结构良好，以便读者更容易理解。</p>
+      <!-- 你可以在这里添加更多的文章内容 -->
+    </div>
+    <div class="author">作者：张三 | 日期：2024年11月5日</div>
+  </div>
+  <div class="container">
+    <div class="header">
+      <h1>PHP学习小结</h1>
+      <div class="share-button">
+        <button onclick="window.prompt('复制以下内容:', document.location.href)">分享或复制链接</button>
+      </div>
+    </div>
+    <div class="content">
+      <span>2024/11/6日（数组篇）</span>
+      <p>1.explode()可将数组拆分为字符串，结构：explode("拆分依据",拆分对象)</p>
+      <img src="/img/explode的用法.png">
+      <p>2.implode()可将字符串合并为数组，结构：implode("合并依据",合并对象)</p>
+      <img src="/img/implode的用法.png">
+      <p>3.还可以使用for循环进行合并字符串</p>
+      <img src="/img/for循环合并数组.png">
+      <!-- 你可以在这里添加更多的文章内容 -->
+    </div>
+    <div class="author">作者：张三 | 日期：2024年11月5日</div>
+  </div>
+</body>
+
+</html>
