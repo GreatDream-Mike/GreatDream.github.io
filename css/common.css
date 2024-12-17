@@ -17,11 +17,11 @@ p {
 /* 字体图标样式 */
 @font-face {
   font-family: 'icomoon';
-  src: url('../../html/fonts/icomoon.eot?i9lvad');
-  src: url('../../html/fonts/icomoon.eot?i9lvad#iefix') format('embedded-opentype'),
-    url('../../html/fonts/icomoon.ttf?i9lvad') format('truetype'),
-    url('../../html/fonts/icomoon.woff?i9lvad') format('woff'),
-    url('../../html/fonts/icomoon.svg?i9lvad#icomoon') format('svg');
+  src: url('../fonts/icomoon.eot?i9lvad');
+  src: url('../fonts/icomoon.eot?i9lvad#iefix') format('embedded-opentype'),
+    url('../fonts/icomoon.ttf?i9lvad') format('truetype'),
+    url('../fonts/icomoon.woff?i9lvad') format('woff'),
+    url('../fonts/icomoon.svg?i9lvad#icomoon') format('svg');
   font-weight: normal;
   font-style: normal;
   font-display: block;
